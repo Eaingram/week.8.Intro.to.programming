@@ -1,13 +1,31 @@
-import logging     #to import logging
+import os
+import sys
 
-logging.basicConfig(filename="goodies.py, level = logging.INFO")
-with open("goodies.py") as f:
-    read_data = f.read()
+directory=input("enter a directory to save the file in (for example C:/Python)")
+isDirectory = os.path.isdir(directory)
 
-filename = input ("filename: ")
-with open(filename, "w") as f:
-    f.write(input(full_name , address, phone_number))
-    full_name = "what is your name?"
-    address = "What is your address?"
-    phone_number = "What is your 10 digit phone number?"
+if isDirectory == False:
+    sys.exit("Error directory does not exist")
 
+fileName=input("enter the filename you wish to save (for example file.txt)")
+
+isFile = os.path.isfile(fileName)
+
+print(isDirectory)
+print(isFile)
+filePath = directory + "/" + fileName
+
+name=input("please enter your name")
+address=input("please enter your address")
+phoneNumber=input("please enter your phone number")
+
+file = open(filePath, "w")
+file.write(str(name) + "," + str(address) + "," + str(phoneNumber) + ",")
+file.close
+
+print ("printing file contents")
+
+file = open(filePath, "r")
+for line in file:
+    print (line)
+file.close
